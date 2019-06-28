@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 import 'package:rxdart/rxdart.dart';
 
-/// Rx stream builder that will pre-populate the streams initial data if the 
+/// Rx stream builder that will pre-populate the streams initial data if the
 /// given stream is an rx obseravable that holds the streams current value such
 /// as a `BehaviorSubject` or a `ReplaySubject`
 class RxStreamBuilder<T> extends StatefulWidget {

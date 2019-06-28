@@ -4,7 +4,7 @@ A new Flutter package project.
 
 ## Getting Started
 
-An rx stream builder widget that is able to pre-populate a flutter `StreamBuilder` with data from an rx stream if the stream is eiter a value or a replay observable.  For example the RX stream is a `BehaviorSubject` or a `ReplaySubject`.
+An rx stream builder widget that is able to pre-populate a flutter `StreamBuilder` with data from an rx stream if the stream is either a value or a replay observable.  For example the RX stream is a `BehaviorSubject` or a `ReplaySubject`.
 
 This will slightly improve the performance as the first frame will be rendered with data rather than waiting for the stream to emit data.
 
