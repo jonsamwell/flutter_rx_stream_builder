@@ -19,6 +19,11 @@ class RxStreamBuilder<T> extends StatefulWidget {
   /// will take precedence over the data provided.
   final T initialData;
 
+  /// If the given stream is a ReplayObservable then this zero-based index
+  /// will be used to pick the value to use as the initial data.
+  /// Defaults to the last emitted value.
+  final int valuesSnapshotIndex;
+
   /// Creates a new [RxStreamBuilder] that builds itself based on the latest
   /// snapshot of interaction with the specified [stream] and whose build
   /// strategy is given by [builder].
@@ -35,6 +40,7 @@ class RxStreamBuilder<T> extends StatefulWidget {
       {@required this.stream,
       @required this.builder,
       this.initialData,
+      this.valuesSnapshotIndex,
       Key key})
       : super(key: key);
 
@@ -59,7 +65,10 @@ class _RxStreamBuilderState<T> extends State<RxStreamBuilder<T>> {
     } else if (stream is ValueObservable<T>) {
       initialData = stream.value;
     } else if (stream is ReplayObservable<T>) {
-      if (stream.values.isNotEmpty) {
+      if (widget.valuesSnapshotIndex != null &&
+          stream.values.length >= widget.valuesSnapshotIndex) {
+        initialData = stream.values.elementAt(widget.valuesSnapshotIndex);
+      } else if (stream.values.isNotEmpty) {
         initialData = stream.values.last;
       }
     }

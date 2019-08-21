@@ -37,10 +37,10 @@ class MyApp extends StatelessWidget {
     return RxStreamBuilder(
       stream: _themeData$,
       builder: (context, snapshot) => MaterialApp(
-            title: 'RxStreamBuilder Demo',
-            theme: snapshot.data,
-            home: MyHomePage(title: 'Rx StreamBuilder Demo Page'),
-          ),
+        title: 'RxStreamBuilder Demo',
+        theme: snapshot.data,
+        home: MyHomePage(title: 'Rx StreamBuilder Demo Page'),
+      ),
     );
   }
 }
