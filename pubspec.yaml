@@ -1,16 +1,16 @@
 name: flutter_rx_stream_builder
 description: An rx stream builder that can pre-populate the inital data of a stream builder from an rx value / replay observable
-version: 1.0.2
+version: 1.0.3
 author: Jon Samwell <jonsamwell@gmail.com>
 homepage: https://github.com/jonsamwell/flutter_rx_stream_builder
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: '>=2.6.0 <3.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  rxdart: ">=0.22.0 <1.0.0"
+  rxdart: '>=0.23.0 <1.0.0'
 
 dev_dependencies:
   pedantic:

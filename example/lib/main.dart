@@ -7,10 +7,10 @@ class RandomThemeManager {
   final Subject<ThemeData> _themeData = BehaviorSubject.seeded(
       ThemeData.light().copyWith(primaryColor: Colors.yellow));
 
-  Observable<ThemeData> get themeData => _themeData;
+  Stream<ThemeData> get themeData => _themeData;
 
   void initialise() {
-    Observable.fromIterable(Iterable.generate(5000, (n) => n))
+    Stream.fromIterable(Iterable.generate(5000, (n) => n))
         .interval(const Duration(seconds: 2))
         .map((_) => ThemeData.light().copyWith(
             primaryColor:
@@ -27,7 +27,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  final Observable<ThemeData> _themeData$;
+  final Stream<ThemeData> _themeData$;
 
   const MyApp(this._themeData$, {Key key}) : super(key: key);
 

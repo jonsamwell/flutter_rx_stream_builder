@@ -36,13 +36,13 @@ class RxStreamBuilder<T> extends StatefulWidget {
   ///
   /// The [stream] must not be null.
   /// The [builder] must not be null.
-  const RxStreamBuilder(
-      {@required this.stream,
-      @required this.builder,
-      this.initialData,
-      this.valuesSnapshotIndex,
-      Key key})
-      : super(key: key);
+  const RxStreamBuilder({
+    @required this.stream,
+    @required this.builder,
+    this.initialData,
+    this.valuesSnapshotIndex,
+    Key key,
+  }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _RxStreamBuilderState<T>();
@@ -53,18 +53,19 @@ class _RxStreamBuilderState<T> extends State<RxStreamBuilder<T>> {
   Widget build(BuildContext context) {
     final initialData = _getInitialData(widget.stream);
     return StreamBuilder(
-        initialData: initialData,
-        stream: widget.stream,
-        builder: widget.builder);
+      initialData: initialData,
+      stream: widget.stream,
+      builder: widget.builder,
+    );
   }
 
   T _getInitialData(Stream<T> stream) {
     T initialData;
     if (widget.initialData != null) {
       initialData = widget.initialData;
-    } else if (stream is ValueObservable<T>) {
+    } else if (stream is ValueStream<T>) {
       initialData = stream.value;
-    } else if (stream is ReplayObservable<T>) {
+    } else if (stream is ReplayStream<T>) {
       if (widget.valuesSnapshotIndex != null &&
           stream.values.length >= widget.valuesSnapshotIndex) {
         initialData = stream.values.elementAt(widget.valuesSnapshotIndex);

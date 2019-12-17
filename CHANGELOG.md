@@ -1,6 +1,8 @@
+## [1.0.3] - 18/12/2019
+* Updated to adhere with new names in RxDart
+
 ## [1.0.2] - 21/08/2019
 * Fixed issue getting initial data of ReplaySubject with no value in value collection
-
 
 ## [1.0.1] - 01/07/2019
 * Added ability to define snapshot index in the case where a ReplayObservable is passed in and may have a collection of values accessible
