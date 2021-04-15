@@ -1,3 +1,6 @@
+## [2.0.0] - 15/04/2021
+* Updated to null-safety
+
 ## [1.0.3] - 18/12/2019
 * Updated to adhere with new names in RxDart
 

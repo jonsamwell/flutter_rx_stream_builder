@@ -2,7 +2,7 @@ import 'package:flutter/widgets.dart';
 import 'package:rxdart/rxdart.dart';
 
 /// Rx stream builder that will pre-populate the streams initial data if the
-/// given stream is an rx obseravable that holds the streams current value such
+/// given stream is an rx observable that holds the streams current value such
 /// as a `BehaviorSubject` or a `ReplaySubject`
 class RxStreamBuilder<T> extends StatefulWidget {
   /// The asynchronous computation to which this builder is currently connected,
@@ -17,18 +17,18 @@ class RxStreamBuilder<T> extends StatefulWidget {
   /// The data that will be used to create the initial snapshot.
   /// Note that the data held with a value / replay  stream (if is is not null)
   /// will take precedence over the data provided.
-  final T initialData;
+  final T? initialData;
 
   /// If the given stream is a ReplayObservable then this zero-based index
   /// will be used to pick the value to use as the initial data.
   /// Defaults to the last emitted value.
-  final int valuesSnapshotIndex;
+  final int? valuesSnapshotIndex;
 
   /// Creates a new [RxStreamBuilder] that builds itself based on the latest
   /// snapshot of interaction with the specified [stream] and whose build
   /// strategy is given by [builder].
   ///
-  /// If the given stream is of a type that stores data like a BehaviourSubject,
+  /// If the given stream is of a type that stores data like a BehaviorSubject,
   /// ReplaySubject or a variant it's stored data will be used for the inner
   /// StreamBuilder's initial data giving a measurable performance improvement.
   ///
@@ -37,11 +37,11 @@ class RxStreamBuilder<T> extends StatefulWidget {
   /// The [stream] must not be null.
   /// The [builder] must not be null.
   const RxStreamBuilder({
-    @required this.stream,
-    @required this.builder,
+    required this.stream,
+    required this.builder,
     this.initialData,
     this.valuesSnapshotIndex,
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -59,16 +59,16 @@ class _RxStreamBuilderState<T> extends State<RxStreamBuilder<T>> {
     );
   }
 
-  T _getInitialData(Stream<T> stream) {
-    T initialData;
+  T? _getInitialData(Stream<T> stream) {
+    T? initialData;
     if (widget.initialData != null) {
-      initialData = widget.initialData;
+      initialData = widget.initialData!;
     } else if (stream is ValueStream<T>) {
-      initialData = stream.value;
+      initialData = stream.value!;
     } else if (stream is ReplayStream<T>) {
       if (widget.valuesSnapshotIndex != null &&
-          stream.values.length >= widget.valuesSnapshotIndex) {
-        initialData = stream.values.elementAt(widget.valuesSnapshotIndex);
+          stream.values.length >= widget.valuesSnapshotIndex!) {
+        initialData = stream.values.elementAt(widget.valuesSnapshotIndex!);
       } else if (stream.values.isNotEmpty) {
         initialData = stream.values.last;
       }

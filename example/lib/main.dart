@@ -29,24 +29,26 @@ void main() {
 class MyApp extends StatelessWidget {
   final Stream<ThemeData> _themeData$;
 
-  const MyApp(this._themeData$, {Key key}) : super(key: key);
+  const MyApp(this._themeData$) : super();
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return RxStreamBuilder(
+    return RxStreamBuilder<ThemeData>(
       stream: _themeData$,
       builder: (context, snapshot) => MaterialApp(
         title: 'RxStreamBuilder Demo',
         theme: snapshot.data,
-        home: MyHomePage(title: 'Rx StreamBuilder Demo Page'),
+        home: MyHomePage('Rx StreamBuilder Demo Page'),
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage(
+    this.title,
+  ) : super();
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -116,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.display1,
+              style: Theme.of(context).textTheme.headline4,
             ),
           ],
         ),
