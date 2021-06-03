@@ -63,8 +63,8 @@ class _RxStreamBuilderState<T> extends State<RxStreamBuilder<T>> {
     T? initialData;
     if (widget.initialData != null) {
       initialData = widget.initialData!;
-    } else if (stream is ValueStream<T>) {
-      initialData = stream.value!;
+    } else if (stream is ValueStream<T> && stream.hasValue) {
+      initialData = stream.value;
     } else if (stream is ReplayStream<T>) {
       if (widget.valuesSnapshotIndex != null &&
           stream.values.length >= widget.valuesSnapshotIndex!) {

@@ -1,3 +1,6 @@
+## [2.0.1] - 31/05/2021
+* Fixed a null assertion error with ValueStream
+
 ## [2.0.0] - 15/04/2021
 * Updated to null-safety
 
